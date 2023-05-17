@@ -33,6 +33,7 @@ edit strategy and PlusShareMethod as the share strategy
 Below is the class diagram that describes the relationships between these
 entities:
 
+```mermaid
 classDiagram
 
 class PhoneCameraApp
@@ -75,3 +76,5 @@ EditMethod <|-- BasicEditMethod
 EditMethod <|-- PlusEditMethod
 ShareMethod <|-- BasicShareMethod
 ShareMethod <|-- PlusShareMethod
+
+```

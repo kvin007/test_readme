@@ -1,6 +1,6 @@
 # Solution
 
-
+```mermaid
 classDiagram
 
 class PhoneCameraApp
@@ -43,3 +43,4 @@ EditMethod <|-- BasicEditMethod
 EditMethod <|-- PlusEditMethod
 ShareMethod <|-- BasicShareMethod
 ShareMethod <|-- PlusShareMethod
+```

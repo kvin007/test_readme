@@ -1,54 +1,45 @@
+# Solution
 
-## 2. Instructions
 
-You are working for a start-up that develops a photo app that is designed to take, edit, save and share pictures. 
-Depending on the subscription plan, a user can have basic or plus features. Currently the design of the app follow 
-the diagram below:
-
-```mermaid
 classDiagram
 
-class PhoneCameraApp {
-    -_edit_method EditMethod
-    -_share_method ShareMethod
-    +take() str
-    +save() str
-}
+class PhoneCameraApp
+PhoneCameraApp : -EditMethod  _edit_method
+PhoneCameraApp : -ShareMethod _share_method
+PhoneCameraApp : + set_edit_method()
+PhoneCameraApp : + set_share_method()
+PhoneCameraApp : +take() str
+PhoneCameraApp : +save() str
+PhoneCameraApp : +edit() str
+PhoneCameraApp : +share() str
+
 
 class EditMethod
-<<interface>> EditMethod{
-    +edit() str
-}
+<<interface>> EditMethod
+EditMethod: +edit()*
+
 
 class ShareMethod
-<<interface>> ShareMethod{
-    +edit() str
-}
+<<interface>> ShareMethod
+ShareMethod: +share()*
 
 
-class BasicEditMethod{
-    +edit() str
-}
+class BasicEditMethod
+BasicEditMethod: +edit() str
 
-class PlusEditMethod{
-    +edit() str
-}
+class PlusEditMethod
+PlusEditMethod: +edit() str
 
-class BasicShareMethod{
-    +share() str
-}
+class BasicShareMethod
+BasicShareMethod: +share() str
 
-class PlusShareMethod{
-    +share() str
-}
+class PlusShareMethod
+PlusShareMethod: +share() str
 
-PhoneCameraApp *-- EditMethod
-PhoneCameraApp *-- ShareMethod
+PhoneCameraApp o-- EditMethod
+PhoneCameraApp o-- ShareMethod
+
 EditMethod <|-- BasicEditMethod
 EditMethod <|-- PlusEditMethod
 ShareMethod <|-- BasicShareMethod
 ShareMethod <|-- PlusShareMethod
-
-
-```
-

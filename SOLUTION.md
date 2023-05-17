@@ -7,22 +7,48 @@ the diagram below:
 
 ```mermaid
 classDiagram
+
 class PhoneCameraApp {
+    -_edit_method EditMethod
+    -_share_method ShareMethod
     +take() str
-    +edit()* str
     +save() str
-    +share()* str
 }
-class BasicCameraApp {
+
+class EditMethod
+<<interface>> EditMethod{
     +edit() str
-    +share() str
 }
-class PlusCameraApp{
+
+class ShareMethod
+<<interface>> ShareMethod{
     +edit() str
+}
+
+
+class BasicEditMethod{
+    +edit() str
+}
+
+class PlusEditMethod{
+    +edit() str
+}
+
+class BasicShareMethod{
     +share() str
 }
 
-PhoneCameraApp <|-- BasicCameraApp
-PhoneCameraApp <|-- PlusCameraApp
+class PlusShareMethod{
+    +share() str
+}
+
+PhoneCameraApp *-- EditMethod
+PhoneCameraApp *-- ShareMethod
+EditMethod <|-- BasicEditMethod
+EditMethod <|-- PlusEditMethod
+ShareMethod <|-- BasicShareMethod
+ShareMethod <|-- PlusShareMethod
+
+
 ```
 

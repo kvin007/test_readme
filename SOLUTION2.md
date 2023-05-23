@@ -1,11 +1,11 @@
 # Solution
 
 The ensuing approach uses the **Adapter pattern** in order to allow the client to be able to
-simulate ducks with drones without making any changes to the client itself.
+simulate drones as they were ducks without making any changes to the client itself.
 
 After applying the Adapter Pattern, the following entities were identified:
 - The **client** is the `DuckSimulator`. It takes a Duck instance and simulates its behaviour
-with the simulate_duck static method
+with the `simulate_duck` static method
 
 - The **service** is the `Drone`, since it has an incompatible interface with the client (it is
 not a Duck)
@@ -53,4 +53,5 @@ DuckSimulator --> Duck
 MallardDuck ..|> Duck
 SuperDrone ..|> Drone
 DroneAdapter ..|> Duck
+DroneAdapter -->  Drone
 ```

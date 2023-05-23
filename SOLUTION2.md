@@ -26,8 +26,8 @@ class DuckSimulator {
 }
 class Duck {
     <<interface>>
-    +quack() str
-    +fly() str
+    +quack()* str
+    +fly()* str
 }
 class MallardDuck {
     <<>>
@@ -35,9 +35,9 @@ class MallardDuck {
 
 class Drone {
     <<interface>>
-    +beep() str
-    +spin_rotors() str
-    +take_off() str
+    +beep()* str
+    +spin_rotors()* str
+    +take_off()* str
 }
 class SuperDrone {
     <<>>

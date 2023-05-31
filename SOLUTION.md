@@ -2,12 +2,12 @@
 
 The ensuing approach uses the **Observer pattern** in order to allow the weather station notify the other components
 of the web application (user interface, loggers and system alerts) about the change in temperature, wind_speed,
-pressure and humidity
+pressure and humidity.
 
-After applying the Observer Pattern, the following entities were identified:
-- The **concrete publisher** is the `WeatherStation`. 
+After applying the pattern, the following entities were identified:
+- The **concrete publisher** is the `WeatherStation`:
   - It is composed of a base publisher
-  - It receives events that will change its behavior or properties and the base publisher will notify those events to the listeners
+  - It receives events that will change its behaviour or properties and the base publisher will notify those events to the listeners
 
 - The **base publisher** is the `EventManager`:
   - It keeps track of all the listeners of specific event types
@@ -16,7 +16,7 @@ After applying the Observer Pattern, the following entities were identified:
   need to implement
 
 - The **subscribers** are the `UserInterface`, `Logger`, `AlertSystem` classes since they implement the update method from the `EventListener` interface.
-This update method defines the specific way each of this classes will handle the new data of specific event types
+This update method defines the specific way each of these classes will handle the new data of specific event types
 
 Below is the class diagram that describes the relationships between these
 entities:
@@ -27,7 +27,7 @@ class WeatherStation {
     -float wind_speed
     -float pressure
     -float humidity
-    -EventManager event_manager
+    +EventManager event_manager
     +set_temperature()
     +set_wind_speed()
     +set_pressure()
@@ -35,7 +35,7 @@ class WeatherStation {
     +set_event_manager(event_manager)
 }
 class EventManager {
-    -listeners
+    +listeners
     +subscribe(event_type, listener)
     +notify(event_type, data)
 }

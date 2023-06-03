@@ -61,6 +61,7 @@ This repository includes the following files with their respective explanations:
 *Before running these scripts, it is necessary to have an active Redshift cluster in your AWS account. Make sure to modify the appropriate values in the dwh.cfg file to match your specific cluster configuration.*
 
 a. Run the **create_tables.py** script as this part of the job drops and recreates any neccesary table
+
 b. Run the **etl.py** script as this part of the job loads from S3 into the staging tables and populates the fact and dimension tables.
 
 ## Star Schema design

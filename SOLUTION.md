@@ -1,85 +1,90 @@
 # Solution
 
-The ensuing approach uses the **Observer pattern** in order to allow the weather station notify the other components
-of the web application (user interface, loggers and system alerts) about the change in temperature, wind_speed,
-pressure and humidity.
+The ensuing approach uses the **Decorator pattern** in order to allow a PizzaDough have different PizzaToppings on it
+to get a full description and cost of the pizza required.
 
 After applying the pattern, the following entities were identified:
-- The **concrete publisher** is the `WeatherStation`:
-  - It is composed of a base publisher
-  - It receives events that will change its behaviour or properties and the base publisher will notify those events to the listeners
 
-- The **base publisher** is the `EventManager`:
-  - It keeps track of all the listeners of specific event types
-  - It allows listeners to subscribe to specific event types
-  - It notifies listeners of a specific event type about new data by calling the update method that the listeners
-  need to implement
+- The **component interface** is the `PizzaIngredient`:
+  - It defines methods to get size, description and cost of a pizza
+  
+- The **component** is the `PizzaDough` which implements the methods from the component interface. 
+  - *Specific components can be derived such as the `SicilianPizza` and `NeapolitanPizza` classes*
 
-- The **subscribers** are the `UserInterface`, `Logger`, `AlertSystem` classes since they implement the update method from the `EventListener` interface.
-This update method defines the specific way each of these classes will handle the new data of specific event types
+- The **base decorator** is the `PizzaTopping` since it has a `PizzaIngredient` (component interface) as a wrapee and also
+implements the methods from the component interface
+
+- The **concrete decorators** are the toppings themselves, such as `MarinaraSauce`, `AlfredoSauce` or `Pepperoni`. They
+define extra behavior to the `PizzaDough`, in this case is adding more description and cost which is needed for Pizza orders
+
 
 Below is the class diagram that describes the relationships between these
 entities:
 ```mermaid
 classDiagram
-class WeatherStation {
-    -float temperature
-    -float wind_speed
-    -float pressure
-    -float humidity
-    +EventManager event_manager
-    +set_temperature()
-    +set_wind_speed()
-    +set_pressure()
-    +set_humidity()
-    +set_event_manager(event_manager)
-}
-class EventManager {
-    +listeners
-    +subscribe(event_type, listener)
-    +notify(event_type, data)
-}
-class EventListener {
+
+class PizzaIngredient {
     <<interface>>
-    +update(event_type, new_value)*
+    +get_size()* PizzaSize
+    +get_cost()* float
+    +get_description()* str
 }
-class UserInterface {
-    -float temperature
-    -float humidity
-    +update(event_type, new_value)
-    +display() str
-}
-class Logger {
-    -float temperature
-    -float wind_speed
-    -float pressure
-    -float humidity
-    +update(event_type, new_value)
-    +log() str
-}
-class AlertSystem {
-    -float temperature
-    -float wind_speed
-    +update(event_type, new_value)
-    +alert() str
+class PizzaDough {
+    -cost: float
+    -description: str
+    -size: PizzaSize
+    +get_cost() float
+    +get_description() str
+    +get_size() PizzaSize
 }
 
-class EventType{
-    <<enumeration>>
-    TEMPERATURE
-    WIND_SPEED
-    PRESSURE
-    HUMIDITY
+class PizzaTopping {
+    -cost: float
+    -description: str
+    -size: PizzaSize
+    -wrapee: PizzaIngredient
+    +get_cost() float
+    +get_description() str
+    +get_size() PizzaSize
 }
-WeatherStation *-- EventManager
-WeatherStation --> EventType
-UserInterface --> EventType
-Logger --> EventType
-AlertSystem --> EventType
-EventManager --> EventType
-UserInterface ..|> EventListener
-Logger ..|> EventListener
-AlertSystem ..|> EventListener
-EventManager *-- EventListener
+
+class PizzaOrder {
+    -dough: PizzaDough
+    -ingredients: List~PizzaTopping~
+    -pizza
+    +compose_pizza()
+    +get_total_cost() float
+    +get_full_description() str
+}
+
+class PizzaSize{
+    <<enumeration>>
+    SMALL
+    MEDIUM
+    LARGE
+    EXTRA_LARGE
+}
+
+
+
+PizzaDough ..|> PizzaIngredient
+PizzaTopping ..|> PizzaIngredient
+PizzaTopping o-- PizzaIngredient 
+
+
+PizzaOrder *--> PizzaDough
+PizzaOrder *--> PizzaTopping
+
+PizzaDough <|-- SicilianPizza
+PizzaDough <|-- NeapolitanPizza
+PizzaDough --> PizzaSize
+PizzaTopping <|-- MarinaraSauce
+PizzaTopping <|-- AlfredoSauce
+PizzaTopping <|-- Cheese
+PizzaTopping <|-- Olives
+PizzaTopping <|-- Onion
+PizzaTopping <|-- BellPeppers
+PizzaTopping <|-- YorkHam
+PizzaTopping <|-- Pepperoni
 ```
 

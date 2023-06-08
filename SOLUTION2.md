@@ -1,30 +1,19 @@
 This repository contains the following structure high level:
 
     .
-    ├── src                    # Documentation files (alternatively `doc`)
-    │   ├── data_extraction              # Table of contents
+    ├── src                    
+    │   ├── data_extraction         # API project
     │   ├── ├── src
     │   ├── ├── ├── api
     │   ├── ├── ├── config
     │   ├── ├── ├── helpers
     │   ├── ├── ├── logs
-    │   ├── ├── ├── transfer
-    │   ├── ├── app.main              # Frequently asked questions
-    │   ├── ├── main.main              # Frequently asked questions
-    │   ├── dbt_deploy             # Miscellaneous information
-    │   ├── ├── dbt_project              # Frequently asked questions
+    │   ├── ├── ├── transfer.      # (for transfering data from API to S3)
+    │   ├── ├── ├── app.main       # (for lambda execution)
+    │   ├── ├── ├── main.py        # (for local execution)
+    │   ├── ├──  Dockerfile        (for lambda execution using ECR) 
+    │   ├── ├──  requirements.txt   
+    │   ├── dbt_deploy             # Dbt Project
+    │   ├── ├── dbt_project        # (with bronze, silver and gold models)
     │   └──  ...                 
-    └── ...
-
-
-
-
-    .
-    ├── ...
-    ├── docs                    # Documentation files (alternatively `doc`)
-    │   ├── TOC.md              # Table of contents
-    │   ├── faq.md              # Frequently asked questions
-    │   ├── misc.md             # Miscellaneous information
-    │   ├── usage.md            # Getting started guide
-    │   └── ...                 # etc.
     └── ...

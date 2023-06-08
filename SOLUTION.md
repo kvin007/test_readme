@@ -1,12 +1,12 @@
 # Solution
 
-The ensuing approach uses the **Decorator pattern** in order to allow a PizzaDough have different PizzaToppings on it
-to get a full description and cost of the pizza required.
+The ensuing approach uses the **Decorator pattern** in order to allow a PizzaDough to have different PizzaToppings 
+on it to get a full description and cost of the required pizza.
 
 After applying the pattern, the following entities were identified:
 
 - The **component interface** is the `PizzaIngredient`:
-  - It defines methods to get size, description and cost of a pizza
+  - It defines methods to get the size, description, and cost of a pizza.
   
 - The **component** is the `PizzaDough` which implements the methods from the component interface. 
   - *Specific components can be derived such as the `SicilianPizza` and `NeapolitanPizza` classes*
@@ -15,7 +15,7 @@ After applying the pattern, the following entities were identified:
 implements the methods from the component interface
 
 - The **concrete decorators** are the toppings themselves, such as `MarinaraSauce`, `AlfredoSauce` or `Pepperoni`. They
-define extra behavior to the `PizzaDough`, in this case is adding more description and cost which is needed for Pizza orders
+define extra behavior for the `PizzaDough`, in this case, adding more description and cost, which is needed for pizza orders.
 
 
 Below is the class diagram that describes the relationships between these

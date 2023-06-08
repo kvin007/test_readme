@@ -2,7 +2,7 @@ This repository contains the following structure high level:
 
     .
     ├── src                    
-    │   ├── data_extraction         # API project
+    │   ├── data_extraction        # API project
     │   ├── ├── src
     │   ├── ├── ├── api
     │   ├── ├── ├── config
